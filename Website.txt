@@ -1,0 +1,220 @@
+# PROJECT: SIMPLE PERSONAL INVESTMENT TRACKER
+
+Act as a professional full-stack developer and UI/UX designer.
+
+Build a simple, lightweight, and responsive Personal Investment Tracker website.
+
+The purpose of this application is to help me monitor my personal investment assets, total invested capital, current asset value, and overall profit/loss.
+
+IMPORTANT:
+This is NOT a complex financial management system.
+Do not build unnecessary enterprise features, complicated accounting systems, or excessive analytics.
+
+I want a simple personal dashboard that I can access approximately three times per week.
+
+## 1. TECHNOLOGY STACK
+
+Use:
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Supabase for database storage
+- Vercel for deployment
+- Recharts for simple charts
+
+Keep the application lightweight and easy to maintain.
+
+## 2. CORE FEATURES
+
+### A. Main Dashboard
+
+Display:
+- Total invested capital.
+- Current total portfolio value.
+- Total unrealized profit/loss.
+- Overall ROI percentage.
+- Asset allocation chart.
+- List of owned investment assets.
+
+All values must be calculated from actual saved data.
+
+### B. Asset Management
+
+Allow me to:
+- Add a new investment asset.
+- Edit asset information.
+- Delete an asset.
+- Record purchase quantity.
+- Record purchase price.
+- View average purchase price.
+- View current market price.
+- View current asset value.
+- View unrealized profit/loss.
+
+Support these asset categories:
+- Cryptocurrency.
+- Gold.
+- Stocks.
+- Mutual funds.
+- Custom assets.
+
+### C. Transaction History
+
+Keep transaction management simple.
+
+Allow me to record:
+- Asset purchase.
+- Asset sale.
+- Transaction date.
+- Quantity.
+- Purchase or sale price.
+- Transaction fees (optional).
+
+Show transaction history in a simple table.
+
+### D. Market Price Monitoring
+
+Research and integrate free market data APIs.
+
+Preferred sources:
+- CoinGecko for cryptocurrency.
+- GoldAPI.dev or another verified free source for gold.
+- A reliable free source for Indonesian stock prices, if available.
+
+Requirements:
+- Retrieve current market prices.
+- Convert prices to IDR.
+- Display the last updated timestamp.
+- Provide a manual refresh button.
+- Use caching to reduce API calls.
+- Do not invent or fabricate prices.
+- If an API is unavailable, allow manual price input.
+
+Important:
+For gold, distinguish international spot prices from local gold retail and buyback prices.
+
+For assets without a reliable free API, manual pricing is sufficient.
+
+### E. Portfolio Overview
+
+Show a simple table containing:
+
+| Asset | Quantity | Average Buy Price | Current Price | Market Value | P/L |
+
+Include a simple asset allocation chart.
+
+## 3. FINANCIAL CALCULATIONS
+
+Implement accurate but simple financial calculations.
+
+Total Invested Capital:
+Sum of remaining acquisition costs, including applicable purchase fees.
+
+Current Market Value:
+Current Asset Quantity × Current Market Price.
+
+Unrealized Profit/Loss:
+Current Market Value - Remaining Cost Basis.
+
+ROI:
+(Unrealized Profit/Loss / Remaining Cost Basis) × 100%.
+
+Use weighted average cost for multiple purchases and partial sales.
+
+Keep deposits and withdrawals separate from investment profits.
+
+Use decimal-safe calculations for financial values.
+
+## 4. DATABASE
+
+Use Supabase PostgreSQL.
+
+Create only the necessary tables:
+
+- assets
+- transactions
+- price_history
+
+Use proper relationships and timestamps.
+
+Enable Row Level Security.
+
+Use Supabase Authentication if needed for a private dashboard.
+
+Do not store API keys in frontend code.
+
+## 5. UI/UX DESIGN
+
+Design a modern minimalist fintech dashboard.
+
+Design direction:
+- Clean and professional.
+- Simple navigation.
+- Dark or light theme.
+- Responsive desktop and mobile layout.
+- Clear financial information.
+- Minimal animations.
+- Easy-to-read charts and tables.
+
+Use Bahasa Indonesia for all interface labels.
+
+The main dashboard should prioritize:
+1. Total portfolio value.
+2. Total invested capital.
+3. Profit/loss.
+4. Asset list.
+
+Do not overcrowd the interface.
+
+## 6. DEPLOYMENT
+
+Prepare the application for deployment on Vercel.
+
+Use Supabase for persistent cloud database storage.
+
+Provide:
+- .env.example
+- Database setup instructions.
+- API configuration instructions.
+- Vercel deployment instructions.
+
+Make the application accessible through a public Vercel URL while protecting personal investment data through authentication.
+
+## 7. DEVELOPMENT APPROACH
+
+Work in these stages:
+
+Phase 1:
+Inspect the project and prepare the architecture.
+
+Phase 2:
+Build the dashboard UI and navigation.
+
+Phase 3:
+Implement Supabase database and asset management.
+
+Phase 4:
+Implement transaction management and financial calculations.
+
+Phase 5:
+Integrate free market price APIs and manual price fallback.
+
+Phase 6:
+Test the application and fix bugs.
+
+Phase 7:
+Prepare deployment to Vercel.
+
+Do not stop after creating a UI mockup.
+
+All core features must work with real database data.
+
+Avoid unnecessary complexity.
+
+If API credentials are required, implement the integration and tell me exactly what credentials I need to configure.
+
+Start by inspecting the project and presenting a concise implementation plan. Then proceed with development.
+
+FINAL GOAL:
+Deliver a simple, reliable, cloud-based personal investment tracker that allows me to monitor my assets and investment performance without unnecessary complexity.

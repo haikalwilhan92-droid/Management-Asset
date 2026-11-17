@@ -1,0 +1,39 @@
+# PERSONAL INVESTMENT TRACKER — LEAN BUILD (token budget: 500K, max 1M)
+
+Single-user dashboard, opened ~3x/week. Keep it minimal. No extra features.
+
+## Stack
+Next.js (App Router) + TypeScript + Tailwind (plain, no shadcn) + Supabase (DB + email/password auth) + Recharts (1 pie chart only) + Vercel.
+
+## Data (3 tables, RLS by user_id)
+- assets: id, user_id, name, category (crypto|gold|stock|fund|custom), symbol, coingecko_id (nullable)
+- transactions: id, user_id, asset_id, type (buy|sell), date, quantity, price, fee
+- prices: asset_id, price_idr, source (coingecko|manual), updated_at
+
+## Pages (2 + login)
+1. /  Dashboard: 4 summary cards (Invested, Market Value, P/L, ROI%), holdings table
+   (Asset | Qty | Avg Buy | Current Price | Value | P/L), allocation pie, "Refresh prices" button,
+   inline manual price edit, add/edit/delete asset form (modal).
+2. /transactions  Simple table + add/delete form (buy/sell, date, qty, price, fee).
+3. /login  Supabase email/password.
+
+## Calculations (one file lib/calc.ts, average-cost method)
+- Holdings derived from transactions. Buy fee adds to cost; sell reduces cost at avg price.
+- Invested = remaining cost basis. Value = qty × current price. P/L = Value − Invested. ROI = P/L / Invested.
+
+## Prices
+- Crypto: CoinGecko simple/price, vs_currency=idr, no API key.
+- Gold, stocks, funds, custom: manual price input (label clearly as manual, e.g. "Antam buyback").
+- Store in prices table; refresh only on button click; show updated_at. Never invent prices.
+
+## Out of scope
+Realized P/L reports, multiple currencies beyond IDR, gold/stock APIs, notifications, test suites, dark mode.
+
+## Build in 3 sessions (start a fresh session for each)
+S1: Scaffold, Supabase schema SQL + RLS, auth, layout.            (~150K tokens)
+S2: Asset + transaction CRUD, calc.ts, dashboard + pie chart.        (~200K tokens)
+S3: CoinGecko + manual price, `next build` fix, README (.env.example, Supabase + Vercel steps). (~150K tokens)
+
+## Rules for the assistant
+Write files directly in batches; do not re-read files you just wrote; no subagents; no web research
+unless an API call fails; run `next build` once per session, not after every file; keep replies short.
